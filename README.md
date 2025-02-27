@@ -20,6 +20,11 @@
 | [pkcs7](symmetric/pkcs7.py) | 4 | 3 | A | 87.6 | 21 | 4.5 |
 | [oaep](symmetric/oaep.py) | 18 | 4 | A | 265.0 | 54 | 3.6 |
 
+### Hash Functions
+| Name | Lines | CC | CC Rank | Halstead Volume | Halstead Length | Halstead Difficulty |
+|-|-|-|-|-|-|-|
+| [md5](symmetric/md5.py) | 19 | 2 | A | 114.7 | 27 | 3.2 |
+
 ### Symmetric Encryption
 | Name | Lines | CC | CC Rank | Halstead Volume | Halstead Length | Halstead Difficulty |
 |-|-|-|-|-|-|-|
