@@ -3,21 +3,26 @@ import secrets
 from sympy import nextprime
 
 
-def gen(bits: int) -> int:
-    prime_candidate = secrets.randbits(bits)
-    return nextprime(prime_candidate)
+# Generator to use, which must be a primitive root modulo p
+# Since 5 is a prime, it is fine to use with any prime p (except 5)
+g = 5
+# Prime number for the size of the group
+# 1024 bits is a common size for DHKE
+bits = 1024
+# Prime number to use as the modulus
+# Generate a random prime number of the specified size
+p = nextprime(secrets.randbits(bits))
 
-def private(prime: int) -> int:
-    return random.randint(1, prime - 1)
+# Generate a private key for alice
+a = random.randint(1, p - 1) # Any number below p is fine
+A = pow(g, a, p) # Alice's public key
 
-def public(prime: int, base: int, private_key: int) -> int:
-    return pow(base, private_key, prime)
+# Generate a private key for bob
+b = random.randint(1, p - 1) # Any number below p is fine
+B = pow(g, b, p) # Bob's public key
 
+# Calculate the shared secret
+sb = pow(A, b, p) # Shared secret for bob
+sa = pow(B, a, p) # Shared secret for alice
 
-assert (g := 5)
-assert (p := gen(1024))
-assert (a := private(p))
-assert (A := public(p, g, a))
-assert (b := private(p))
-assert (B := public(p, g, b))
-assert public(p, B, a) == public(p, A, b)
+assert sa == sb
