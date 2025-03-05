@@ -10,7 +10,7 @@ def gen(length: int = 10) -> str:
     return b32encode(secrets.token_bytes(length)).decode('utf-8')
 
 
-def totp(secret, t=None, digits=6):
+def totp(secret: str, t: float = None, digits: int = 6) -> int:
     # Calculate time
     epoch_interval = 30 # TOTP changes every 30 seconds
     if t is None:
