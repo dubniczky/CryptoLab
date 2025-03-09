@@ -4,7 +4,7 @@
 # It is not cryptographically secure, but it is fast and easy to implement.
 
 
-def crc32(data: bytes) -> int:
+def hash(data: bytes) -> int:
     crc = 0xFFFFFFFF # 4 bytes of 1s
     for byte in data:
         crc ^= byte # XOR with the next byte
@@ -15,4 +15,4 @@ def crc32(data: bytes) -> int:
                 crc >>= 1
     return crc ^ 0xFFFFFFFF
 
-assert crc32(b"abcdefgh") == 0xAEEF2A50
+assert hash(b"abcdefgh") == 0xAEEF2A50

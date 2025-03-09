@@ -9,7 +9,7 @@ import struct
 def _left_rotate(n, b):
         return ((n << b) | (n >> (32 - b))) & 0xffffffff
 
-def sha1(data: bytes) -> str:
+def hash(data: bytes) -> str:
     # Initialize default hash values. These values are the first 32 bits of the fractional parts of the square roots of the first 8 prime numbers. This does not have any special meaning, but it is a simple way to get a set of initial values that are not too predictable.
     h0 = 0x67452301
     h1 = 0xEFCDAB89
@@ -70,5 +70,5 @@ def sha1(data: bytes) -> str:
     return '%08x%08x%08x%08x%08x' % (h0, h1, h2, h3, h4)
 
 
-assert sha1(b'abcd') == '81fe8bfe87576c3ecb22426f8e57847382917acf'
-assert sha1(b'') == 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
+assert hash(b'abcd') == '81fe8bfe87576c3ecb22426f8e57847382917acf'
+assert hash(b'') == 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
